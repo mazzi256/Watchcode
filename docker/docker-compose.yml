@@ -1,0 +1,34 @@
+# @format
+
+version: "3.9"
+
+services:
+  backend:
+    container_name: watchcode-backend
+    image: watchcode-backend
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: docker/.env
+    ports:
+      - 8002:8002
+    volumes:
+      - watchcode/temp
+    depends_on: [postgres]
+
+  postgres:
+    container_name: watchcode-postgres
+    image: postgres:9.6-alpine
+    env_file: docker/.env
+    ports:
+      - 5435:5435
+    environment:
+      POSTGRES_USER: watchcode_user
+      POSTGRES_PASSWORD: watchcode_pass
+    volumes:
+      - watchcode-postgres-pgdata:/var/lib/postgresql/data
+
+volumes:
+  watchcode-pgdata: null
+  watchcode: null
+  watchcode-postgres-pgdata:
