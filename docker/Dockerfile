@@ -1,10 +1,16 @@
-FROM python:3.8-slim as base
+FROM python:3.8.11 as base
 
 FROM base
 
 ENV PYTHONUNBUFFERED=1
 ENV APP_HOST_SRC=.
 ENV APP_CONTAINER_SRC=/watchcode
+
+RUN apt-get -y update && \
+    apt-get -y install \
+    nmap \
+    && apt-get -y clean
+
 
 WORKDIR $APP_CONTAINER_SRC
 
