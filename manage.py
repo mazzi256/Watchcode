@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "watchcode.settings.dev")
     if os.getenv("DJANGO_SETTINGS_MODULE"):
-        os.environ["DJANGO_SETTINGS_MODULE"] = os.getenv("DJANGO_SETTINGS_MODULE")
+        os.environ["DJANGO_SETTINGS_MODULE"] = os.getenv("DJANGO_SETTINGS_MODULE")  # type: ignore
 
     try:
         from django.core.management import execute_from_command_line
@@ -27,4 +27,4 @@ def main():
 
 if __name__ == "__main__":
     dotenv.load_dotenv(BASE_DIR / "docker/.env")
-    main()
+    main()  # type: ignore

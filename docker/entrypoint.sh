@@ -10,6 +10,7 @@ migrate() {
     python manage.py migrate --noinput --settings=${SETTINGS}
 }
 
+
 runserver() {
     python manage.py runserver 0.0.0.0:${PORTNUM:-8002} --settings=${SETTINGS}
 }
