@@ -169,3 +169,7 @@ isort:
 	else
 		echo "No need to sort anything"
 	fi
+
+# .PHONY: bash
+# bash:
+#     @docker exec -it watchcode bash
