@@ -12,17 +12,20 @@ import nmap as np
 from drf_yasg.utils import swagger_auto_schema
 
 from rest_framework.request import Request
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
 class NmapList(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request: Request, format=None) -> Response:
         nmaps = Nmap.objects.all()
         serializer = NmapSerializer(nmaps, many=True)
         return Response(serializer.data)
 
     # Generating scheema and showing fields in swagger ui
-    @swagger_auto_schema(request_body=NmapSerializer)  #type:ignore
+    @swagger_auto_schema(request_body=NmapSerializer)  # type:ignore
     def post(self, request: Request, format=None) -> Response:
         serializer = NmapSerializer(data=request.data)
         nm = np.PortScanner()

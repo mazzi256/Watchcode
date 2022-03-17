@@ -3,4 +3,5 @@ django-stubs
 mypy
 djangorestframework-stubs
 types-requests==2.25.12
+pytest
 

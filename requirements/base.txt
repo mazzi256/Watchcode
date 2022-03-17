@@ -4,4 +4,4 @@ python-dotenv
 psycopg2-binary
 python-nmap
 drf-yasg
-
+djangorestframework-simplejwt
