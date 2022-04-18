@@ -40,10 +40,12 @@ class NmapList(APIView):
                     hosts=target,
                     arguments=command,
                 )
-                results = (
+                results = dict(
                     nm.analyse_nmap_xml_scan(),
                 )  # Returns all the reults from the scanned target
+                # cleaned_results = results.pop("services")
                 nm.scan(hosts=target, arguments=command)
+
                 serializer.save(response=results)
                 return Response(results, status=status.HTTP_201_CREATED)
 
