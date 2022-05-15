@@ -40,10 +40,12 @@ class NmapList(APIView):
                     hosts=target,
                     arguments=command,
                 )
-                results = (
+                results = dict(
                     nm.analyse_nmap_xml_scan(),
                 )  # Returns all the reults from the scanned target
+                # cleaned_results = results.pop("services")
                 nm.scan(hosts=target, arguments=command)
+
                 serializer.save(response=results)
                 return Response(results, status=status.HTTP_201_CREATED)
 
@@ -56,9 +58,11 @@ class NmapList(APIView):
 
 
 class NmapDetail(APIView):
+    queryset = Nmap.objects.all()
+
     def get_object(self, target: str):
         try:
-            return Nmap.objects.filter(target=target).latest("id")
+            return self.queryset.get(target=target)
         except Nmap.DoesNotExist:
             raise Http404
 
