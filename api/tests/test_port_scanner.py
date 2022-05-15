@@ -31,7 +31,4 @@ def test_retrieve_weather_using_mocks(mocker, fake_scanned_info):
     # Mock the status code
     fake_resp.status_code = HTTPStatus.OK
 
-    mocker.patch("portscanner.requests.get", return_value=fake_resp)
-
-    weather_info = retrieve_weather(city="London")
-    assert weather_info == WeatherInfo.from_dict(fake_scanned_info)
+    

@@ -58,9 +58,11 @@ class NmapList(APIView):
 
 
 class NmapDetail(APIView):
+    queryset = Nmap.objects.all()
+
     def get_object(self, target: str):
         try:
-            return Nmap.objects.filter(target=target).latest("id")
+            return self.queryset.get(target=target)
         except Nmap.DoesNotExist:
             raise Http404
 
