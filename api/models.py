@@ -15,5 +15,5 @@ class Nmap(BaseModel):
     command = models.CharField(max_length=255, default="-v -sS -sV -sC -A -O")  # type: ignore
 
 
-class WebCrawler(BaseModel):
+class Web_Subdomain(BaseModel):
     target = models.CharField(max_length=255, default="127.0.0.1")

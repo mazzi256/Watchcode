@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Nmap, WebCrawler
+from .models import Nmap, Web_Subdomain
 
 
 class NmapSerializer(serializers.ModelSerializer[Nmap]):
@@ -8,7 +8,7 @@ class NmapSerializer(serializers.ModelSerializer[Nmap]):
         fields = "__all__"
 
 
-class WebCrawlerSerializer(serializers.ModelSerializer[WebCrawler]):
+class Web_SubdomainSerializer(serializers.ModelSerializer[Web_Subdomain]):
     class Meta:
-        model = WebCrawler
+        model = Web_Subdomain
         fields = "__all__"
